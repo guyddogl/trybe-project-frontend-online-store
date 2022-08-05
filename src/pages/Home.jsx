@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Categories from '../components/Categories';
+import ProductsList from '../components/ProductsList';
 
 class Home extends Component {
   render() {
@@ -10,6 +11,7 @@ class Home extends Component {
           <button type="submit" data-testid="shopping-cart-button">Carrinho</button>
         </Link>
         <Categories />
+        <ProductsList />
         <p
           data-testid="home-initial-message"
         >
