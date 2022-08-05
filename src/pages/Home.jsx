@@ -37,21 +37,25 @@ class Home extends Component {
   render() {
     const { products, search } = this.state;
     return (
-      <div>
+      <>
         <Link to="/cart">
           <button type="submit" data-testid="shopping-cart-button">Carrinho</button>
         </Link>
         <Categories handleCategory={ this.handleCategory } />
+        <section className="container">
+          <div className="row justify-content-center mt-3">
+            <InputSearch
+              search={ search }
+              handleOnChange={ this.handleOnChange }
+              handleSearch={ this.handleSearch }
+            />
+          </div>
+        </section>
         <p
           data-testid="home-initial-message"
         >
           Digite algum termo de pesquisa ou escolha uma categoria.
         </p>
-        <InputSearch
-          search={ search }
-          handleOnChange={ this.handleOnChange }
-          handleSearch={ this.handleSearch }
-        />
         {products.length === 0
           ? <p>Nenhum produto foi encontrado</p>
           : products
@@ -59,7 +63,7 @@ class Home extends Component {
               product={ element }
               key={ element.id }
             />))}
-      </div>
+      </>
     );
   }
 }
