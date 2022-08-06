@@ -46,7 +46,12 @@ class Home extends Component {
       <>
         <Categories handleCategory={ this.handleCategory } />
         <section className="container">
-          <div className="row justify-content-center mt-3">
+          <div className="row justify-content-center text-center mt-3">
+            <p
+              data-testid="home-initial-message"
+            >
+              Digite algum termo de pesquisa ou escolha uma categoria.
+            </p>
             <InputSearch
               search={ search }
               handleOnChange={ this.handleOnChange }
@@ -55,18 +60,19 @@ class Home extends Component {
             />
           </div>
         </section>
-        <p
-          data-testid="home-initial-message"
-        >
-          Digite algum termo de pesquisa ou escolha uma categoria.
-        </p>
-        {products.length === 0
-          ? <p>Nenhum produto foi encontrado</p>
-          : products
-            .map((element) => (<ProductCard
-              product={ element }
-              key={ element.id }
-            />))}
+        <section className="container mt-5 bg-light">
+          <div
+            className="row justify-content-center align-items-center g-3 p-2"
+          >
+            {products.length === 0
+              ? <p>Nenhum produto foi encontrado</p>
+              : products
+                .map((element) => (<ProductCard
+                  product={ element }
+                  key={ element.id }
+                />))}
+          </div>
+        </section>
       </>
     );
   }
