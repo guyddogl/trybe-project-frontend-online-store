@@ -27,6 +27,7 @@ class HeaderNav extends Component {
           <Link
             to="/cart"
             className="btn btn-light position-relative"
+            data-testid="shopping-cart-button"
           >
             <i className="fa-solid fa-cart-shopping fa-lg mt-3" />
             <span

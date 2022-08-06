@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import Categories from '../components/Categories';
 import InputSearch from '../components/InputSearch';
 import ProductCard from '../components/ProductCard';
@@ -38,9 +37,6 @@ class Home extends Component {
     const { products, search } = this.state;
     return (
       <>
-        <Link to="/cart">
-          <button type="submit" data-testid="shopping-cart-button">Carrinho</button>
-        </Link>
         <Categories handleCategory={ this.handleCategory } />
         <section className="container">
           <div className="row justify-content-center mt-3">

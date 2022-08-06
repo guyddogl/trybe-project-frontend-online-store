@@ -16,17 +16,45 @@ class Categories extends Component {
     const { handleCategory } = this.props;
     const { categories } = this.state;
     return (
-      <ul>
-        {categories.map((category) => (
-          <li
-            data-testid="category"
-            key={ category.id }
+      <div
+        className="offcanvas offcanvas-start bg-dark text-white"
+        tabIndex="-1"
+        id="NavCategories"
+      >
+        <div className="offcanvas-header">
+          <h5 className="offcanvas-title" id="offcanvasExampleLabel">Categories</h5>
+          <button
+            type="button"
+            className="btn btn-light"
+            data-bs-dismiss="offcanvas"
+            aria-label="Close"
           >
-            <button type="button" onClick={ () => handleCategory(category.id) }>
-              {category.name}
-            </button>
-          </li>))}
-      </ul>
+            <i
+              className="fa-solid fa-xmark"
+            />
+
+          </button>
+        </div>
+        <div className="offcanvas-body">
+          <ul className="list-group list-group-flush">
+            {categories.map((category) => (
+              <li
+                key={ category.id }
+                data-bs-dismiss="offcanvas"
+                className="btn btn-dark text-start my-1"
+              >
+                <button
+                  data-testid="category"
+                  type="button"
+                  className="btn btn-link"
+                  onClick={ () => handleCategory(category.id) }
+                >
+                  {category.name}
+                </button>
+              </li>))}
+          </ul>
+        </div>
+      </div>
     );
   }
 }
