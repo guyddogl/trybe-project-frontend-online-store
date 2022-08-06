@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Categories from '../components/Categories';
 import InputSearch from '../components/InputSearch';
 import ProductCard from '../components/ProductCard';
+import Loading from '../components/Loading';
 import { getProductsFromCategoryAndQuery } from '../services/api';
 
 class Home extends Component {
@@ -16,6 +17,7 @@ class Home extends Component {
   }
 
   handleCategory = async (paramID) => {
+    this.setState({ products: [] });
     const response = await getProductsFromCategoryAndQuery(paramID);
     const { results } = response;
     this.setState({
@@ -31,6 +33,7 @@ class Home extends Component {
 
   handleSearch = async () => {
     this.setLoading(true);
+    this.setState({ products: [] });
     const { search } = this.state;
     const response = await getProductsFromCategoryAndQuery(undefined, search);
     const { results } = response;
@@ -64,6 +67,7 @@ class Home extends Component {
           <div
             className="row justify-content-center align-items-center g-3 p-2"
           >
+            {isLoading && <Loading />}
             {products.length === 0
               ? <p>Nenhum produto foi encontrado</p>
               : products
