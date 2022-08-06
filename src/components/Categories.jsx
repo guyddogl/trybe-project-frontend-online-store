@@ -32,7 +32,6 @@ class Categories extends Component {
             <i
               className="fa-solid fa-xmark"
             />
-
           </button>
         </div>
         <div className="offcanvas-body">
