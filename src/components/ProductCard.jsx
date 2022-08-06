@@ -29,7 +29,7 @@ class ProductCard extends React.Component {
                 text="See Details"
               />
               <ButtonIconText
-                classStyle="dark"
+                classStyle="success"
                 icon="fa-solid fa-cart-plus"
                 text="Add To Cart"
               />

@@ -8,7 +8,7 @@ class HeaderNav extends Component {
         <li className="nav-item">
           <Link
             to="/"
-            className="nav-link me-2 btn btn-light text-dark text-decoration-none"
+            className="nav-link me-2 btn btn-dark text-white text-decoration-none"
           >
             Home
           </Link>
@@ -16,7 +16,7 @@ class HeaderNav extends Component {
         <li className="nav-item">
           <Link
             to="/"
-            className="nav-link me-2 btn btn-light text-dark text-decoration-none"
+            className="nav-link me-2 btn btn-dark text-white text-decoration-none"
             data-bs-toggle="offcanvas"
             data-bs-target="#NavCategories"
           >
@@ -26,12 +26,12 @@ class HeaderNav extends Component {
         <li className="nav-item">
           <Link
             to="/cart"
-            className="btn btn-light position-relative"
+            className="btn btn-dark position-relative"
             data-testid="shopping-cart-button"
           >
             <i className="fa-solid fa-cart-shopping fa-lg mt-3" />
             <span
-              className="position-absolute start-100 translate-middle badge bg-dark"
+              className="position-absolute start-100 translate-middle badge bg-success"
             >
               10
             </span>
