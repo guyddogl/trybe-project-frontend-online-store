@@ -17,7 +17,11 @@ class InputSearch extends Component {
             value={ search }
             id="search-products"
             onChange={ handleOnChange }
-            onKeyPress={ (e) => e.key === 'Enter' && handleSearch() }
+            onKeyPress={ (e) => {
+              if (search.length >= caracteresInputSize && e.key === 'Enter') {
+                return handleSearch();
+              }
+            } }
             data-testid="query-input"
             className="form-control"
             placeholder="Pesquisar produtos"
