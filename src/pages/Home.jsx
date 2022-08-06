@@ -17,12 +17,14 @@ class Home extends Component {
   }
 
   handleCategory = async (paramID) => {
+    this.setLoading(true);
     this.setState({ products: [] });
     const response = await getProductsFromCategoryAndQuery(paramID);
     const { results } = response;
     this.setState({
       products: results,
     });
+    this.setLoading(false);
   }
 
   handleOnChange = ({ target: { name, value } }) => {
@@ -68,8 +70,11 @@ class Home extends Component {
             className="row justify-content-center align-items-center g-3 p-2"
           >
             {isLoading && <Loading />}
-            {products.length === 0
-              ? <p>Nenhum produto foi encontrado</p>
+            {products.length === 0 ? (
+              <div className="alert alert-warning text-center">
+                Nenhum produto foi encontrado
+              </div>
+            )
               : products
                 .map((element) => (<ProductCard
                   product={ element }
