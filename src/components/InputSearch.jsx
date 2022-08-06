@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 class InputSearch extends Component {
   render() {
     const { search, handleOnChange, handleSearch, loading } = this.props;
-    const caracteresInputSize = 5;
+    const caracteresInputSize = 3;
     return (
       <div className="col-12 col-md-5 my-2">
         <div className="input-group">
@@ -21,16 +21,23 @@ class InputSearch extends Component {
             className="form-control"
             placeholder="Pesquisar produtos"
           />
-          {loading ? 'loading' : (
-            <button
-              type="button"
-              className="btn btn-dark"
-              onClick={ handleSearch }
-              data-testid="query-button"
-              disabled={ search.length < caracteresInputSize }
-            >
-              Pesquisar
-            </button>)}
+          {loading ? (
+            <button className="btn btn-dark" type="button" disabled>
+              <span className="mx-2 spinner-border spinner-border-sm" />
+              Pesquisando...
+            </button>)
+            : (
+              <button
+                type="button"
+                className="btn btn-dark"
+                style={ { width: '160px' } }
+                onClick={ handleSearch }
+                data-testid="query-button"
+                disabled={ search.length < caracteresInputSize }
+              >
+                Pesquisar
+              </button>
+            )}
         </div>
       </div>
     );
