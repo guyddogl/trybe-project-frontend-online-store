@@ -41,7 +41,10 @@ class Home extends Component {
         <Link to="/cart">
           <button type="submit" data-testid="shopping-cart-button">Carrinho</button>
         </Link>
-        <Categories handleCategory={ this.handleCategory } />
+        <Categories
+          handleCategory={ this.handleCategory }
+          handleSearch={ this.handleSearch }
+        />
         <section className="container">
           <div className="row justify-content-center mt-3">
             <InputSearch

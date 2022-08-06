@@ -19,10 +19,13 @@ class Categories extends Component {
       <ul>
         {categories.map((category) => (
           <li
-            data-testid="category"
             key={ category.id }
           >
-            <button type="button" onClick={ () => handleCategory(category.id) }>
+            <button
+              data-testid="category"
+              type="button"
+              onClick={ () => handleCategory(category.id) }
+            >
               {category.name}
             </button>
           </li>))}
