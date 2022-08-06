@@ -40,12 +40,13 @@ class Categories extends Component {
               <li
                 key={ category.id }
                 data-bs-dismiss="offcanvas"
-                className="btn btn-dark text-start my-1"
+                className="btn btn-dark my-1"
               >
                 <button
                   data-testid="category"
                   type="button"
-                  className="btn btn-link"
+                  className="btn btn-link text-start"
+                  style={ { width: '100%' } }
                   onClick={ () => handleCategory(category.id) }
                 >
                   {category.name}
