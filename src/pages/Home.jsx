@@ -8,7 +8,11 @@ class Home extends Component {
   state = {
     search: '',
     products: [],
-    loading: false,
+    isLoading: false,
+  }
+
+  setLoading = (bool) => {
+    this.setState({ isLoading: bool });
   }
 
   handleCategory = async (paramID) => {
@@ -26,18 +30,18 @@ class Home extends Component {
   };
 
   handleSearch = async () => {
-    this.setState({ loading: true });
+    this.setLoading(true);
     const { search } = this.state;
     const response = await getProductsFromCategoryAndQuery(undefined, search);
     const { results } = response;
     this.setState({
       products: results,
     });
-    this.setState({ loading: false });
+    this.setLoading(false);
   };
 
   render() {
-    const { products, search, loading } = this.state;
+    const { products, search, isLoading } = this.state;
     return (
       <>
         <Categories handleCategory={ this.handleCategory } />
@@ -47,7 +51,7 @@ class Home extends Component {
               search={ search }
               handleOnChange={ this.handleOnChange }
               handleSearch={ this.handleSearch }
-              loading={ loading }
+              isLoading={ isLoading }
             />
           </div>
         </section>

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 class InputSearch extends Component {
   render() {
-    const { search, handleOnChange, handleSearch, loading } = this.props;
+    const { search, handleOnChange, handleSearch, isLoading } = this.props;
     const caracteresInputSize = 3;
     return (
       <div className="col-12 col-md-5 my-2">
@@ -21,7 +21,7 @@ class InputSearch extends Component {
             className="form-control"
             placeholder="Pesquisar produtos"
           />
-          {loading ? (
+          {isLoading ? (
             <button className="btn btn-dark" type="button" disabled>
               <span className="mx-2 spinner-border spinner-border-sm" />
               Pesquisando...
@@ -48,7 +48,7 @@ InputSearch.propTypes = {
   search: PropTypes.string.isRequired,
   handleOnChange: PropTypes.func.isRequired,
   handleSearch: PropTypes.func.isRequired,
-  loading: PropTypes.bool.isRequired,
+  isLoading: PropTypes.bool.isRequired,
 };
 
 export default InputSearch;
