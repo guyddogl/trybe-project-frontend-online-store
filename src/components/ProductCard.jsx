@@ -20,7 +20,13 @@ class ProductCard extends React.Component {
             className="bd-placeholder-img card-img-top"
           />
           <div className="card-body">
-            <p className="card-text">{ `${title.substr(0, maxCaracteres)}...` }</p>
+            <p
+              className="card-text"
+              style={ { height: '48px' } }
+            >
+              { `${title.substr(0, maxCaracteres)}...` }
+
+            </p>
             <p className="card-text">{`R$${price}`}</p>
             <div className="row p-2 text-center">
               <ButtonIconText
