@@ -29,7 +29,7 @@ class InputSearch extends Component {
           {isLoading ? (
             <button className="btn btn-dark" type="button" disabled>
               <span className="mx-2 spinner-border spinner-border-sm" />
-              Pesquisando...
+              Searching...
             </button>)
             : (
               <button
@@ -40,7 +40,7 @@ class InputSearch extends Component {
                 data-testid="query-button"
                 disabled={ search.length < caracteresInputSize }
               >
-                Pesquisar
+                Search
               </button>
             )}
         </div>
