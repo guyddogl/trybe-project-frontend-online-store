@@ -15,18 +15,18 @@ class ShoppingCart extends Component {
 
   increaseProductQuantity = (idProduct, operation) => {
     const { cart } = this.state;
-    if (operation === 'increase') {
-      const index = cart.indexOf(cart.find(({ id }) => id === idProduct));
+    const index = cart.indexOf(cart.find(({ id }) => id === idProduct));
+    if (operation === 'increase'
+    && cart[index].orderQuantity < cart[index].available_quantity) {
       cart[index].orderQuantity += 1;
       const cartUpdate = cart;
-      this.setState({ cart: cartUpdate });
-    } else {
-      const index = cart.indexOf(cart.find(({ id }) => id === idProduct));
-      if (cart[index].orderQuantity > 1) {
-        cart[index].orderQuantity -= 1;
-        const cartUpdate = cart;
-        this.setState({ cart: cartUpdate });
-      }
+      console.log(cart[index].available_quantity);
+      return this.setState({ cart: cartUpdate });
+    }
+    if (operation === 'decrease' && cart[index].orderQuantity > 1) {
+      cart[index].orderQuantity -= 1;
+      const cartUpdate = cart;
+      return this.setState({ cart: cartUpdate });
     }
   }
 
@@ -48,7 +48,7 @@ class ShoppingCart extends Component {
               <button
                 type="button"
                 data-testid="product-decrease-quantity"
-                onClick={ () => this.increaseProductQuantity(id) }
+                onClick={ () => this.increaseProductQuantity(id, 'decrease') }
               >
                 -
               </button>
