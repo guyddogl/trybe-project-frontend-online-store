@@ -4,7 +4,7 @@ import ButtonIconText from './ButtonIconText';
 
 class ProductCard extends React.Component {
   render() {
-    const { product } = this.props;
+    const { product, handlerAddToCart } = this.props;
     const { title, thumbnail, price } = product;
     const maxCaracteres = 47;
     return (
@@ -33,11 +33,15 @@ class ProductCard extends React.Component {
                 classStyle="secondary"
                 icon="fa-solid fa-circle-info"
                 text="See Details"
+                handlerAddToCart={ handlerAddToCart }
+                product={ product }
               />
               <ButtonIconText
                 classStyle="success"
                 icon="fa-solid fa-cart-plus"
                 text="Add To Cart"
+                handlerAddToCart={ handlerAddToCart }
+                product={ product }
               />
             </div>
           </div>
@@ -53,6 +57,7 @@ ProductCard.propTypes = {
     thumbnail: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
   }).isRequired,
+  handlerAddToCart: PropTypes.func.isRequired,
 };
 
 export default ProductCard;

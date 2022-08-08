@@ -10,6 +10,18 @@ class Home extends Component {
     search: '',
     products: [],
     isLoading: false,
+    cart: (!JSON.parse(localStorage.getItem('cart'))
+      ? []
+      : JSON.parse(localStorage.getItem('cart'))),
+  }
+
+  componentDidUpdate = async () => {
+    const { cart } = this.state;
+    localStorage.setItem('cart', JSON.stringify(cart));
+  }
+
+  handlerAddToCart = (product) => {
+    this.setState((before) => ({ cart: [...before.cart, product] }));
   }
 
   setLoading = (bool) => {
@@ -79,6 +91,7 @@ class Home extends Component {
                 .map((element) => (<ProductCard
                   product={ element }
                   key={ element.id }
+                  handlerAddToCart={ this.handlerAddToCart }
                 />))}
           </div>
         </section>
