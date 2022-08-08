@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 
 class ButtonIconText extends React.Component {
   render() {
-    const { icon, text, classStyle, handlerAddToCart, product } = this.props;
+    const { icon, text, classStyle, handlerAddToCart, product, dataTestId } = this.props;
     return (
       <button
-        data-testid="product-add-to-cart"
+        data-testid={ dataTestId }
         type="button"
         className={ `btn btn-${classStyle} my-1 mx-1` }
         onClick={ () => handlerAddToCart(product) }
@@ -24,6 +24,7 @@ ButtonIconText.propTypes = {
   classStyle: PropTypes.string.isRequired,
   product: PropTypes.shape({}).isRequired,
   handlerAddToCart: PropTypes.func.isRequired,
+  dataTestId: PropTypes.string.isRequired,
 };
 
 export default ButtonIconText;
