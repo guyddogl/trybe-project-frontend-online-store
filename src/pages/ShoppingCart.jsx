@@ -33,7 +33,6 @@ class ShoppingCart extends Component {
   removeProduct = (id) => {
     const { cart } = this.state;
     const cartUpdate = cart.filter((item) => item.id !== id);
-    console.log(cartUpdate);
     this.setState({ cart: cartUpdate });
   }
 
