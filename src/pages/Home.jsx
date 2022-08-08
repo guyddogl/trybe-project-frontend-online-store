@@ -18,7 +18,7 @@ class Home extends Component {
 
   handleCategory = async (paramID) => {
     this.setLoading(true);
-    this.setState({ products: [] });
+    this.setState({ products: [], search: '' });
     const response = await getProductsFromCategoryAndQuery(paramID);
     const { results } = response;
     this.setState({
