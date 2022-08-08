@@ -35,6 +35,7 @@ class ProductCard extends React.Component {
                 text="See Details"
                 handlerAddToCart={ handlerAddToCart }
                 product={ product }
+                dataTestId="oi"
               />
               <ButtonIconText
                 classStyle="success"
@@ -42,6 +43,7 @@ class ProductCard extends React.Component {
                 text="Add To Cart"
                 handlerAddToCart={ handlerAddToCart }
                 product={ product }
+                dataTestId="product-add-to-cart"
               />
             </div>
           </div>

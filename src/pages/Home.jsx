@@ -15,12 +15,22 @@ class Home extends Component {
       : JSON.parse(localStorage.getItem('cart'))),
   }
 
-  componentDidUpdate = async () => {
+  componentDidUpdate = () => {
     const { cart } = this.state;
     localStorage.setItem('cart', JSON.stringify(cart));
   }
 
   handlerAddToCart = (product) => {
+    const { cart } = this.state;
+    if (cart.some(({ id }) => id === product.id)) {
+      const index = cart.indexOf(cart.find(({ id }) => id === product.id));
+      cart[index].orderQuantity += 1;
+      const cartUpdate = cart;
+      this.setState({ cart: cartUpdate });
+      return;
+    }
+    const orderQuantity = 'orderQuantity';
+    product[orderQuantity] = 1;
     this.setState((before) => ({ cart: [...before.cart, product] }));
   }
 
