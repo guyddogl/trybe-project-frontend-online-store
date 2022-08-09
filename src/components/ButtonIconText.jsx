@@ -5,11 +5,11 @@ import { Link } from 'react-router-dom';
 class ButtonIconText extends React.Component {
   render() {
     const { icon, text, classStyle, handlerAddToCart, product, dataTestId } = this.props;
-    if (dataTestId === 'product') {
+    if (dataTestId === 'product-detail-link') {
       return (
         <Link to="/detalhes">
           <button
-            data-testid={ dataTestId }
+            data-testid="abc"
             type="button"
             className={ `btn btn-${classStyle} my-1 mx-1` }
           >
