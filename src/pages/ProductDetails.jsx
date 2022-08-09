@@ -14,7 +14,13 @@ class ProductDetails extends React.Component {
       productPrice: '',
       productThumbnail: '',
       details: [],
+      product: {},
     };
+  }
+
+  componentDidUpdate = () => {
+    const { cart } = this.state;
+    localStorage.setItem('cart', JSON.stringify(cart));
   }
 
   componentDidMount = async () => {
@@ -22,6 +28,7 @@ class ProductDetails extends React.Component {
     const data = await getProductsByID(id);
     const { title, price, thumbnail, attributes } = data;
     this.setState({
+      product: data,
       productName: title,
       productPrice: price,
       productThumbnail: thumbnail,
@@ -29,8 +36,24 @@ class ProductDetails extends React.Component {
     });
   }
 
+  handlerAddToCart = (product) => {
+    const { cart } = this.state;
+    if (cart.some(({ id }) => id === product.id)) {
+      const index = cart.indexOf(cart.find(({ id }) => id === product.id));
+      cart[index].orderQuantity += 1;
+      const cartUpdate = cart;
+      this.setState({ cart: cartUpdate });
+      return;
+    }
+    const orderQuantity = 'orderQuantity';
+    product[orderQuantity] = 1;
+    this.setState((before) => ({ cart: [...before.cart, product] }));
+  }
+
   render() {
-    const { productName, productPrice, productThumbnail, details, cart } = this.state;
+    const {
+      productName, productPrice, productThumbnail, details, cart, product,
+    } = this.state;
     return (
       <div>
         <Header cart={ cart } />
@@ -57,6 +80,13 @@ class ProductDetails extends React.Component {
             ))}
           </ul>
         </div>
+        <button
+          type="button"
+          data-testid="product-detail-add-to-cart"
+          onClick={ () => this.handlerAddToCart(product) }
+        >
+          Carrinho
+        </button>
       </div>
     );
   }
