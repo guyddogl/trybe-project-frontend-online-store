@@ -51,7 +51,7 @@ class Checkout extends Component {
     } = this.state;
     return (
       <>
-        <Header cart={ cart } />
+        <Header cart={ cart } categories={ false } />
         <div>
           {cart.map(({ title, price, orderQuantity, id }) => (
             <div key={ id }>

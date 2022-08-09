@@ -4,10 +4,11 @@ import PropTypes from 'prop-types';
 
 class HeaderNav extends Component {
   render() {
-    const { cart } = this.props;
+    const { cart, categories } = this.props;
     const abc = cart.length > 0 && cart
       .map(({ orderQuantity }) => orderQuantity).reduce((a, b) => a + b);
     return (
+
       <ul className="nav">
         <li className="nav-item">
           <Link
@@ -17,16 +18,18 @@ class HeaderNav extends Component {
             Home
           </Link>
         </li>
-        <li className="nav-item">
-          <Link
-            to="/"
-            className="nav-link me-2 btn btn-dark text-white text-decoration-none"
-            data-bs-toggle="offcanvas"
-            data-bs-target="#NavCategories"
-          >
-            Categories
-          </Link>
-        </li>
+        {categories
+        && (
+          <li className="nav-item">
+            <Link
+              to="/"
+              className="nav-link me-2 btn btn-dark text-white text-decoration-none"
+              data-bs-toggle="offcanvas"
+              data-bs-target="#NavCategories"
+            >
+              Categories
+            </Link>
+          </li>)}
         <li className="nav-item">
           <Link
             to="/cart"
@@ -43,6 +46,7 @@ class HeaderNav extends Component {
           </Link>
         </li>
       </ul>
+
     );
   }
 }
@@ -51,6 +55,11 @@ HeaderNav.propTypes = {
   cart: PropTypes.arrayOf(
     PropTypes.shape({}).isRequired,
   ).isRequired,
+  categories: PropTypes.bool,
+};
+
+HeaderNav.defaultProps = {
+  categories: true,
 };
 
 export default HeaderNav;

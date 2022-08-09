@@ -6,7 +6,7 @@ import HeaderNav from './HeaderNav';
 
 class Header extends Component {
   render() {
-    const { cart } = this.props;
+    const { cart, categories } = this.props;
     return (
       <header className="container border-bottom">
         <div className="row justify-content-between my-3">
@@ -26,8 +26,8 @@ class Header extends Component {
               </span>
             </Link>
           </div>
-          <div className="col-12 col-sm-8 col-md-5 col-lg-3 d-flex my-1">
-            <HeaderNav cart={ cart } />
+          <div className="col-auto d-flex my-1">
+            <HeaderNav cart={ cart } categories={ categories } />
           </div>
         </div>
       </header>
@@ -39,6 +39,11 @@ Header.propTypes = {
   cart: PropTypes.arrayOf(
     PropTypes.shape({}).isRequired,
   ).isRequired,
+  categories: PropTypes.bool,
+};
+
+Header.defaultProps = {
+  categories: true,
 };
 
 export default Header;

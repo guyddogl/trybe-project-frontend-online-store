@@ -40,7 +40,7 @@ class ShoppingCart extends Component {
     const { cart } = this.state;
     return (
       <div>
-        <Header cart={ cart } />
+        <Header cart={ cart } categories={ false } />
         {cart.length > 0
           ? cart.map(({ title, price, orderQuantity, id }) => (
             <div key={ id }>

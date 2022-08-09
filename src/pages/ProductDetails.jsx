@@ -20,16 +20,16 @@ class ProductDetails extends React.Component {
       rated: '',
       textarea: '',
       showMessage: false,
-      avaliations: (!JSON.parse(localStorage.getItem(id))
+      evaluations: (!JSON.parse(localStorage.getItem(id))
         ? []
         : JSON.parse(localStorage.getItem(id))),
     };
   }
 
   componentDidUpdate = () => {
-    const { cart, avaliations, product: { id } } = this.state;
+    const { cart, evaluations, product: { id } } = this.state;
     localStorage.setItem('cart', JSON.stringify(cart));
-    localStorage.setItem(id, JSON.stringify(avaliations));
+    localStorage.setItem(id, JSON.stringify(evaluations));
   }
 
   componentDidMount = async () => {
@@ -60,12 +60,12 @@ class ProductDetails extends React.Component {
       return this.setState({ showMessage: true });
     }
     this.setState({ showMessage: false });
-    const avaliation = {
+    const evaluation = {
       email,
       rated,
       textarea,
     };
-    this.setState((before) => ({ avaliations: [...before.avaliations, avaliation] }));
+    this.setState((before) => ({ evaluations: [...before.evaluations, evaluation] }));
     this.setState({
       email: '',
       rated: '',
@@ -91,12 +91,12 @@ class ProductDetails extends React.Component {
     const {
       email,
       showMessage,
-      avaliations,
+      evaluations,
       textarea, productName, productPrice, productThumbnail, details, cart, product,
     } = this.state;
     return (
       <div>
-        <Header cart={ cart } />
+        <Header cart={ cart } categories={ false } />
         <h2>
           <span data-testid="product-detail-name">{productName}</span>
           {' '}
@@ -212,7 +212,7 @@ class ProductDetails extends React.Component {
         {showMessage
           && <p data-testid="error-msg">Campos inválidos</p>}
         <ul>
-          {avaliations.map((element, index) => (
+          {evaluations.map((element, index) => (
             <li key={ index }>
               <p data-testid="review-card-email">{ element.email }</p>
               <p data-testid="review-card-rating">{ element.rated }</p>

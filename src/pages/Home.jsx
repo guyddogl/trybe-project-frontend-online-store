@@ -72,7 +72,7 @@ class Home extends Component {
     const { products, search, isLoading, cart } = this.state;
     return (
       <>
-        <Header cart={ cart } />
+        <Header cart={ cart } categories />
         <Categories handleCategory={ this.handleCategory } />
         <section className="container">
           <div className="row justify-content-center text-center mt-3">
