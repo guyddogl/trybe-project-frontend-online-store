@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import Header from '../components/Header';
 
 class ShoppingCart extends Component {
   state = {
@@ -20,7 +21,6 @@ class ShoppingCart extends Component {
     && cart[index].orderQuantity < cart[index].available_quantity) {
       cart[index].orderQuantity += 1;
       const cartUpdate = cart;
-      console.log(cart[index].available_quantity);
       return this.setState({ cart: cartUpdate });
     }
     if (operation === 'decrease' && cart[index].orderQuantity > 1) {
@@ -40,6 +40,7 @@ class ShoppingCart extends Component {
     const { cart } = this.state;
     return (
       <div>
+        <Header cart={ cart } />
         {cart.length > 0
           ? cart.map(({ title, price, orderQuantity, id }) => (
             <div key={ id }>

@@ -4,6 +4,7 @@ import InputSearch from '../components/InputSearch';
 import ProductCard from '../components/ProductCard';
 import Loading from '../components/Loading';
 import { getProductsFromCategoryAndQuery } from '../services/api';
+import Header from '../components/Header';
 
 class Home extends Component {
   state = {
@@ -68,9 +69,10 @@ class Home extends Component {
   };
 
   render() {
-    const { products, search, isLoading } = this.state;
+    const { products, search, isLoading, cart } = this.state;
     return (
       <>
+        <Header cart={ cart } />
         <Categories handleCategory={ this.handleCategory } />
         <section className="container">
           <div className="row justify-content-center text-center mt-3">

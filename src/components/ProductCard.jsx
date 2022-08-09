@@ -35,7 +35,7 @@ class ProductCard extends React.Component {
                 text="See Details"
                 handlerAddToCart={ handlerAddToCart }
                 product={ product }
-                dataTestId="oi"
+                dataTestId="product"
               />
               <ButtonIconText
                 classStyle="success"
