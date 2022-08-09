@@ -3,9 +3,16 @@ import PropTypes from 'prop-types';
 import ButtonIconText from './ButtonIconText';
 
 class ProductCard extends React.Component {
+  freeShippingText = (shipping) => {
+    const freeShipping = 'free_shipping';
+    if (shipping[freeShipping] === true) {
+      return <p data-testid="free-shipping">Frete Grátis</p>;
+    }
+  }
+
   render() {
     const { product, handlerAddToCart } = this.props;
-    const { title, thumbnail, price } = product;
+    const { title, thumbnail, price, shipping } = product;
     const maxCaracteres = 47;
     return (
       <div className="col ms-2 my-3">
@@ -28,6 +35,7 @@ class ProductCard extends React.Component {
 
             </p>
             <p className="card-text">{`R$${price}`}</p>
+            {this.freeShippingText(shipping)}
             <div className="row p-2 text-center">
               <ButtonIconText
                 classStyle="secondary"
@@ -58,6 +66,7 @@ ProductCard.propTypes = {
     title: PropTypes.string.isRequired,
     thumbnail: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
+    shipping: PropTypes.shape({}).isRequired,
   }).isRequired,
   handlerAddToCart: PropTypes.func.isRequired,
 };
