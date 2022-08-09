@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ButtonIconText from './ButtonIconText';
+import ButtonLinkIconText from './ButtonLinkIconText';
 
 class ProductCard extends React.Component {
   freeShippingText = (shipping) => {
@@ -37,13 +38,12 @@ class ProductCard extends React.Component {
             <p className="card-text">{`R$${price}`}</p>
             {this.freeShippingText(shipping)}
             <div className="row p-2 text-center">
-              <ButtonIconText
+              <ButtonLinkIconText
                 classStyle="secondary"
                 icon="fa-solid fa-circle-info"
                 text="See Details"
                 handlerAddToCart={ handlerAddToCart }
                 product={ product }
-                dataTestId="oi"
               />
               <ButtonIconText
                 classStyle="success"

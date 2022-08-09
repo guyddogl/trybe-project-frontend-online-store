@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 class HeaderNav extends Component {
   render() {
+    const { cart } = this.props;
+    const abc = cart.length > 0 && cart
+      .map(({ orderQuantity }) => orderQuantity).reduce((a, b) => a + b);
     return (
       <ul className="nav">
         <li className="nav-item">
@@ -32,8 +36,9 @@ class HeaderNav extends Component {
             <i className="fa-solid fa-cart-shopping fa-lg mt-3" />
             <span
               className="position-absolute start-100 translate-middle badge bg-success"
+              data-testid="shopping-cart-size"
             >
-              10
+              {abc}
             </span>
           </Link>
         </li>
@@ -41,5 +46,11 @@ class HeaderNav extends Component {
     );
   }
 }
+
+HeaderNav.propTypes = {
+  cart: PropTypes.arrayOf(
+    PropTypes.shape({}).isRequired,
+  ).isRequired,
+};
 
 export default HeaderNav;

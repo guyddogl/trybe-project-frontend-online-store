@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Header from '../components/Header';
 
 class Checkout extends Component {
   state = {
@@ -50,6 +51,7 @@ class Checkout extends Component {
     } = this.state;
     return (
       <>
+        <Header cart={ cart } />
         <div>
           {cart.map(({ title, price, orderQuantity, id }) => (
             <div key={ id }>

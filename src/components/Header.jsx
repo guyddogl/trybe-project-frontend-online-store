@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import logo from '../assets/img/logo.png';
 import HeaderNav from './HeaderNav';
 
 class Header extends Component {
   render() {
+    const { cart } = this.props;
     return (
       <header className="container border-bottom">
         <div className="row justify-content-between my-3">
@@ -25,12 +27,18 @@ class Header extends Component {
             </Link>
           </div>
           <div className="col-12 col-sm-8 col-md-5 col-lg-3 d-flex my-1">
-            <HeaderNav />
+            <HeaderNav cart={ cart } />
           </div>
         </div>
       </header>
     );
   }
 }
+
+Header.propTypes = {
+  cart: PropTypes.arrayOf(
+    PropTypes.shape({}).isRequired,
+  ).isRequired,
+};
 
 export default Header;
