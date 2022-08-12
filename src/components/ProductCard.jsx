@@ -2,18 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ButtonIconText from './ButtonIconText';
 import ButtonLinkIconText from './ButtonLinkIconText';
+import deliveryfree from '../assets/img/deliveryfree.png';
 
 class ProductCard extends React.Component {
-  freeShippingText = (shipping) => {
-    const freeShipping = 'free_shipping';
-    if (shipping[freeShipping] === true) {
-      return <p data-testid="free-shipping">Frete Grátis</p>;
-    }
-  }
-
   render() {
     const { product, handlerAddToCart } = this.props;
     const { title, thumbnail, price, shipping } = product;
+    const freeShipping = 'free_shipping';
+    const isFreeShipping = shipping[freeShipping];
     const maxCaracteres = 47;
     return (
       <div className="col ms-2 my-3">
@@ -35,8 +31,21 @@ class ProductCard extends React.Component {
               { `${title.substr(0, maxCaracteres)}...` }
 
             </p>
-            <p className="card-text">{`R$${price}`}</p>
-            {this.freeShippingText(shipping)}
+            <div className="row" style={ { height: '48px' } }>
+              <div className="col-7">
+                {`R$${price}`}
+              </div>
+              <div className="col-5">
+                {isFreeShipping
+            && <img
+              src={ deliveryfree }
+              data-testid="free-shipping"
+              className="img-fluid"
+              style={ { height: '48px' } }
+              alt="Frete Grátis"
+            />}
+              </div>
+            </div>
             <div className="row p-2 text-center">
               <ButtonLinkIconText
                 classStyle="secondary"
@@ -66,7 +75,7 @@ ProductCard.propTypes = {
     title: PropTypes.string.isRequired,
     thumbnail: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
-    shipping: PropTypes.shape({}).isRequired,
+    shipping: PropTypes.shape({ }).isRequired,
   }).isRequired,
   handlerAddToCart: PropTypes.func.isRequired,
 };

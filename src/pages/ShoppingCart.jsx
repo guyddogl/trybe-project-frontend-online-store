@@ -39,50 +39,112 @@ class ShoppingCart extends Component {
   render() {
     const { cart } = this.state;
     return (
-      <div>
-        <Header cart={ cart } />
-        {cart.length > 0
-          ? cart.map(({ title, price, orderQuantity, id }) => (
-            <div key={ id }>
-              <p data-testid="shopping-cart-product-name">{title}</p>
-              <p>{price}</p>
+      <>
+        <Header cart={ cart } categories={ false } />
+        <section className="container">
+          <div className="row justify-content-center text-center mt-3">
+            {cart.length > 0
+              ? cart.map(({ thumbnail, title, price, orderQuantity, id }) => (
+                <div
+                  key={ id }
+                  className="row justify-content-center align-items-center my-3"
+                >
+                  <div className="col-8 col-lg-2 mb-3">
+                    <img
+                      src={ thumbnail.replace(/I.jpg/g, 'W.jpg') }
+                      alt={ title }
+                      className="img-fluid mx-auto d-block"
+                    />
+                  </div>
+                  <div className="col-12 col-lg-6 text-start mb-3">
+                    <div
+                      data-testid="shopping-cart-product-name"
+                      className="row fs-5"
+                    >
+                      {title}
+                    </div>
+                    <div className="row my-3">{`R$ ${price}`}</div>
+                    <div className="row align-items-center justify-content-center">
+                      <button
+                        type="button"
+                        className="btn
+                        btn-secondary btn-sm d-none d-lg-block col-4 col-lg-1"
+                        onClick={ () => this.increaseProductQuantity(id, 'decrease') }
+                      >
+                        <i className="fa-solid fa-minus fa-lg" />
+                      </button>
+                      <button
+                        type="button"
+                        data-testid="product-decrease-quantity"
+                        className="btn btn-secondary btn-lg d-lg-none col-4 col-lg-1"
+                        onClick={ () => this.increaseProductQuantity(id, 'decrease') }
+                      >
+                        <i className="fa-solid fa-minus fa-lg" />
+                      </button>
+                      <div
+                        data-testid="shopping-cart-product-quantity"
+                        className="col-3 col-lg-1 text-center fs-4 mx-2"
+                      >
+                        { orderQuantity }
+                      </div>
+                      <button
+                        type="button"
+                        className="btn
+                        btn-success btn-sm d-none d-lg-block col-4 col-lg-1"
+                        onClick={ () => this.increaseProductQuantity(id, 'increase') }
+                        disabled={ this.increaseButtonDisabled }
+                      >
+                        <i className="fa-solid fa-plus fa-lg" />
+                      </button>
+                      <button
+                        type="button"
+                        data-testid="product-increase-quantity"
+                        className="btn
+                        btn-success
+                        btn-lg d-block d-lg-none col-4 col-lg-1"
+                        onClick={ () => this.increaseProductQuantity(id, 'increase') }
+                        disabled={ this.increaseButtonDisabled }
+                      >
+                        <i className="fa-solid fa-plus fa-lg" />
+                      </button>
+                      <button
+                        type="button"
+                        data-testid="remove-product"
+                        className="btn
+                        btn-sm
+                        btn-outline-danger
+                        col-2
+                        offset-lg-6
+                        col-lg-2
+                        mt-3"
+                        onClick={ () => this.removeProduct(id) }
+                      >
+                        Remove
+                      </button>
+                    </div>
+                  </div>
+                  <hr style={ { width: '70%' } } />
+                </div>
+              ))
+              : (
+                <p
+                  data-testid="shopping-cart-empty-message"
+                >
+                  Seu carrinho está vazio
+                </p>)}
+            <Link to="/checkout">
               <button
                 type="button"
-                data-testid="product-decrease-quantity"
-                onClick={ () => this.increaseProductQuantity(id, 'decrease') }
+                className="btn btn-success btn-lg"
+                data-testid="checkout-products"
               >
-                -
+                Finalize a compra
               </button>
-              <p data-testid="shopping-cart-product-quantity">
-                { orderQuantity }
-              </p>
-              <button
-                type="button"
-                data-testid="product-increase-quantity"
-                onClick={ () => this.increaseProductQuantity(id, 'increase') }
-                disabled={ this.increaseButtonDisabled }
-              >
-                +
-              </button>
-              <button
-                type="button"
-                data-testid="remove-product"
-                onClick={ () => this.removeProduct(id) }
-              >
-                Remove
-              </button>
-            </div>
-          ))
-          : (
-            <p
-              data-testid="shopping-cart-empty-message"
-            >
-              Seu carrinho está vazio
-            </p>)}
-        <Link to="/checkout">
-          <button type="button" data-testid="checkout-products">Finalize a compra</button>
-        </Link>
-      </div>
+            </Link>
+          </div>
+
+        </section>
+      </>
 
     );
   }
