@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Header from '../components/Header';
+import CheckoutForm from '../components/CheckoutForm';
 
 class Checkout extends Component {
   state = {
@@ -52,120 +53,62 @@ class Checkout extends Component {
     return (
       <>
         <Header cart={ cart } categories={ false } />
-        <div>
-          {cart.map(({ title, price, orderQuantity, id }) => (
-            <div key={ id }>
-              <p data-testid="shopping-cart-product-name">{title}</p>
-              <p>{price}</p>
-              <p data-testid="shopping-cart-product-quantity">
-                { orderQuantity }
-              </p>
+        <section className="container">
+          <div className="row justify-content-center text-center mt-3">
+            <div className="col-12 col-lg-5 mx-5">
+              {cart.map(({ title, thumbnail, price, orderQuantity, id }) => (
+                <div
+                  key={ id }
+                  className="row justify-content-center align-items-center my-3"
+                >
+                  <div className="col-8 col-lg-3 mb-3">
+                    <img
+                      src={ thumbnail.replace(/I.jpg/g, 'W.jpg') }
+                      alt={ title }
+                      className="img-fluid mx-auto d-block"
+                    />
+                  </div>
+                  <div className="col-12 col-lg-9 text-start mb-3">
+                    <div
+                      data-testid="shopping-cart-product-name"
+                      className="row fs-6"
+                    >
+                      {title}
+                    </div>
+                    <div className="row my-3">
+                      <p data-testid="shopping-cart-product-quantity">
+                        { orderQuantity }
+                      </p>
+                      {`R$ ${price}`}
+                    </div>
+                  </div>
+                  <hr />
+                </div>
+              )) }
             </div>
-          )) }
-        </div>
-        {showMessage
-          && <p data-testid="error-msg">Campos inválidos</p>}
-        <form>
-          <input
-            type="text"
-            name="fullname"
-            value={ fullname }
-            onChange={ this.handleOnChange }
-            data-testid="checkout-fullname"
-            placeholder="fullname"
-          />
-          <input
-            type="email"
-            name="email"
-            value={ email }
-            onChange={ this.handleOnChange }
-            data-testid="checkout-email"
-            placeholder="email"
-          />
-          <input
-            type="text"
-            name="cpf"
-            value={ cpf }
-            onChange={ this.handleOnChange }
-            data-testid="checkout-cpf"
-            placeholder="cpf"
-          />
-          <input
-            type="text"
-            name="phone"
-            value={ phone }
-            onChange={ this.handleOnChange }
-            data-testid="checkout-phone"
-            placeholder="phone"
-          />
-          <input
-            type="text"
-            name="cep"
-            value={ cep }
-            onChange={ this.handleOnChange }
-            data-testid="checkout-cep"
-            placeholder="cep"
-          />
-          <input
-            type="text"
-            name="address"
-            value={ address }
-            onChange={ this.handleOnChange }
-            data-testid="checkout-address"
-            placeholder="address"
-          />
-          <label htmlFor="boleto">
-            <input
-              type="radio"
-              name="payment"
-              id="boleto"
-              value="boleto"
-              onChange={ this.handleOnChange }
-              data-testid="ticket-payment"
-            />
-            Boleto
-          </label>
-          <label htmlFor="visa">
-            <input
-              type="radio"
-              name="payment"
-              id="visa"
-              value="visa"
-              onChange={ this.handleOnChange }
-              data-testid="visa-payment"
-            />
-            Visa
-          </label>
-          <label htmlFor="master">
-            <input
-              type="radio"
-              name="payment"
-              id="master"
-              value="master"
-              onChange={ this.handleOnChange }
-              data-testid="master-payment"
-            />
-            Master
-          </label>
-          <label htmlFor="elo">
-            <input
-              type="radio"
-              name="payment"
-              id="elo"
-              value="elo"
-              onChange={ this.handleOnChange }
-              data-testid="elo-payment"
-            />
-            Elo
-          </label>
-          <button
-            type="button"
-            data-testid="checkout-btn"
-            onClick={ this.completePurchase }
-          >
-            Concluir Compra
-          </button>
-        </form>
+            <div className="col-12 col-lg-6">
+              <CheckoutForm
+                fullname={ fullname }
+                email={ email }
+                cpf={ cpf }
+                phone={ phone }
+                cep={ cep }
+                address={ address }
+                handleOnChange={ this.handleOnChange }
+                completePurchase={ this.completePurchase }
+              />
+              {showMessage
+              && (
+                <p
+                  data-testid="error-msg"
+                  className="alert alert-danger my-3"
+                >
+                  Campos inválidos
+                </p>
+              )}
+            </div>
+          </div>
+        </section>
       </>
 
     );
