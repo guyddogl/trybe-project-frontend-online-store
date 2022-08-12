@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/trybe-project-frontend-online-store/static/css/main.a46515b8.css",
+    "main.js": "/trybe-project-frontend-online-store/static/js/main.73f1f632.js",
+    "static/media/deliveryfree.png": "/trybe-project-frontend-online-store/static/media/deliveryfree.e859ecdbdc1e07d777df.png",
+    "static/media/logo.png": "/trybe-project-frontend-online-store/static/media/logo.f788707a5d89f8752d16.png",
+    "index.html": "/trybe-project-frontend-online-store/index.html",
+    "main.a46515b8.css.map": "/trybe-project-frontend-online-store/static/css/main.a46515b8.css.map",
+    "main.73f1f632.js.map": "/trybe-project-frontend-online-store/static/js/main.73f1f632.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a46515b8.css",
+    "static/js/main.73f1f632.js"
+  ]
+}
